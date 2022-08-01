@@ -1,0 +1,2 @@
+class AccuraciesController < ApplicationController
+end
