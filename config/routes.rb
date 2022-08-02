@@ -3,11 +3,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get '/users', to: "users#index"
+  get '/leaderboard', to: "users#index"
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
+ 
   post "/login", to: 'sessions#create'
   delete "/logout", to: "sessions#destroy"
-
+  
+  get '/accuracies', to: "accuracies#index"
   post "/stat", to: "accuracies#create"
+  delete '/accuracies/:id', to: 'accuracies#destroy'
 end
