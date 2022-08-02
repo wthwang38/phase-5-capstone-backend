@@ -2,24 +2,34 @@ class User < ApplicationRecord
     has_many :accuracies
     has_many :games, through: :accuracies
     
-    validates :name, presence: true, uniqueness: true
+    validates :username, presence: true, uniqueness: true
     validates :password, presence: true, on: :create
     
     has_secure_password
 
-    def totalMissed
-        self.accuracies
+    def total_missed
+       self.accuracies.sum{|acc| acc.missed} 
     end
 
-    def totalHits
+    def total_hits
+        self.accuracies.sum{|acc| acc.hit}
     end
 
-    def totalTotal
+    def total_total
+        self.accuracies.sum{|acc| acc.total}
     end
 
-    def avgTime
+    def avg_time
+        arr = self.accuracies.map{|i| i.timeba}
+        tot =arr.sum
+        len = arr.length
+        
+        avg = tot/len
+
+        avg
     end
 
-    def avgPercent
+    def avg_percent
+
     end
 end

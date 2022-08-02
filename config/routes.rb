@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get '/leaderboard', to: "users#index"
+  get '/leaderboard', to: "users#ranking"
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
+  patch '/update', to: "users#update"
  
   post "/login", to: 'sessions#create'
   delete "/logout", to: "sessions#destroy"

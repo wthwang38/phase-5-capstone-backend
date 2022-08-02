@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
-    def index
+    def ranking
     users = User.all
-    render json: users, status: :ok
+    render json: users, include: :accuracies
     end
     def create
         user = User.create!(user_params)
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
         render json: @current_user
     end
 
+    def update
+       @current_user.update(user_params) 
+       render json: @current_user, status: :ok
+    end
     private
 
     def user_params
