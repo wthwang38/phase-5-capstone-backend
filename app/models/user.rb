@@ -19,17 +19,21 @@ class User < ApplicationRecord
         self.accuracies.sum{|acc| acc.total}
     end
 
-    def avg_time
-        arr = self.accuracies.map{|i| i.timeba}
-        tot =arr.sum
-        len = arr.length
+    def score
+        hits = self.total_hits*100
+        total = self.total_total*15
         
-        avg = tot/len
-
-        avg
-    end
-
-    def avg_percent
+        hits*total
 
     end
+    # def avg_time
+        
+
+    #         arr = self.accuracies.map{|i| i.timeba}
+    #             tot = arr.sum
+    #             len = arr.length
+    #             avg = tot/len
+    #         avg
+    # end
+
 end
