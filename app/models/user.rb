@@ -20,10 +20,10 @@ class User < ApplicationRecord
     end
 
     def score
-        hits = self.total_hits*100
+        hits = self.total_hits*20
         total = self.total_total*15
-        
-        hits*total
+        missed = self.total_missed*10
+        hits*total-missed
 
     end
     # def avg_time
