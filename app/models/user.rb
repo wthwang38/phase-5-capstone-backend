@@ -20,20 +20,28 @@ class User < ApplicationRecord
     end
 
     def score
-        hits = self.total_hits*20
-        total = self.total_total*15
-        missed = self.total_missed*10
-        hits*total-missed
-
+        if self.total_total == 0
+            0
+        else
+            hits = self.total_hits*20
+            total = self.total_total*15
+            missed = self.total_missed*10
+            hits*total-missed
+        end
     end
-    # def avg_time
-        
 
-    #         arr = self.accuracies.map{|i| i.timeba}
-    #             tot = arr.sum
-    #             len = arr.length
-    #             avg = tot/len
-    #         avg
-    # end
+    def avg_time
+        arr = self.accuracies
+
+        if arr.count == 0
+            nil
+        else
+            arr.map{|i| i.timeba}
+            tot = arr.sum
+            len = arr.length
+            avg = tot/len
+            avg
+        end
+    end
 
 end
